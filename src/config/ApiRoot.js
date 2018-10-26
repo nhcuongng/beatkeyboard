@@ -1,0 +1,1 @@
+export const API_ROOT = process.env.ENVIRONMENT ? "https://signinwithfb-server.herokuapp.com" : "http://localhost:8080";

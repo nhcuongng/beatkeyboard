@@ -1,0 +1,35 @@
+.sidebar {
+  width: 215px;
+  height: 100vh;
+}
+
+.login {
+  position: absolute;
+  right: 0px;
+  top: 0px;
+}
+
+.TrainingPage {
+  display: flex;
+}
+
+.training {
+  width: calc(100% - 215px);
+  background-color: #ecf0f1;
+}
+
+.training .typing_section {
+  background-color: white;
+  margin-top: 75px;
+  border: 2px solid #b8daff;
+}
+
+.modal-footer {
+  display: block;
+}
+
+/* .training .typing_section p {
+  padding: 10px;
+  border: 1px solid #007bff;
+  border-radius: 4px;
+} */
