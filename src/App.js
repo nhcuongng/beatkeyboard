@@ -3,7 +3,7 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import TrainingPage from './Components/TrainingPage';
 import MultiplayerPage from './Components/MultiplayerPage';
 
-import { API_ROOT } from './Config/ApiRoot';
+import { API_ROOT } from './config/ApiRoot';
 import axios from './axios'
 
 import './App.css';
