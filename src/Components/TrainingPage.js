@@ -7,9 +7,8 @@ class TrainingPage extends Component {
     render() {
         return (
             <div className="d-flex">
-                <Sidebar/>
-                
-                <Training name = { this.props.name }/>
+                <Sidebar name = { this.props.name }/>
+                <Training />
             </div>
         );
     }

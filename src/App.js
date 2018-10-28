@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 import TrainingPage from './Components/TrainingPage';
 import MultiplayerPage from './Components/MultiplayerPage';
-import './App.css';
-import { API_ROOT } from './config/ApiRoot';
+
+import { API_ROOT } from './Config/ApiRoot';
 import axios from './axios'
-// import profile from './Components/profile'
+
+import './App.css';
 
 class App extends Component {
   state = {}
@@ -21,18 +22,16 @@ class App extends Component {
       this.setState({
           name: response.data.user.name
         })
-     }
-
+      }
     })
-      .catch(err => console.log(err)) 
+    .catch(err => console.log(err)) 
   }
-
   render() {
     return (
       <BrowserRouter>
         <div className="App">
-          <Route exact path="/"  render={(props) => <TrainingPage {...props} name={this.state.name} isAuthed={true} />}  />
-          <Route exact path="/multiplayer" render={(props) => <MultiplayerPage {...props} name={this.state.name} isAuthed={true} />}/>
+          <Route exact path="/"  render={(props) => <TrainingPage {...props} name={this.state.name} isAuthed={true} />} />
+          <Route exact path="/multiplayer" render={(props) => <MultiplayerPage {...props} name={this.state.name} isAuthed={true} />} />
         </div>
       </BrowserRouter>
     );

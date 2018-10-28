@@ -1,12 +1,27 @@
 .sidebar {
   width: 215px;
   height: 100vh;
+  position: relative;
 }
 
-.login {
-  position: absolute;
-  right: 0px;
-  top: 0px;
+.facebook-bg {
+  background-color: #3B5998;
+}
+
+.modal-backdrop.show {
+  opacity: 0.7;
+}
+
+.jumbotron {
+  padding: 1rem;
+}
+
+.progress {
+  height: 1.5rem;
+}
+
+.modal-footer {
+  display: block;
 }
 
 .TrainingPage {
@@ -20,16 +35,20 @@
 
 .training .typing_section {
   background-color: white;
-  margin-top: 75px;
-  border: 2px solid #b8daff;
 }
 
-.modal-footer {
-  display: block;
+.about {
+  color: white;
+  font-size: 0.8rem;
+  border-radius: 0;
+  position: absolute;
+  bottom: 0;
 }
 
-/* .training .typing_section p {
-  padding: 10px;
-  border: 1px solid #007bff;
-  border-radius: 4px;
-} */
+.card-body {
+  padding: 1rem;
+}
+
+.notDisplay {
+  display: none;
+}
