@@ -16,6 +16,7 @@ class Sidebar extends Component {
                 </Nav>
                 <Nav vertical>
                     <Login />
+                    Hi, {this.this.props.name}
                 </Nav>
                 <hr/>
                 <Nav vertical>

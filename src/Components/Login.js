@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button, Modal, ModalHeader, ModalBody, Form, NavLink, NavItem } from 'reactstrap';
-import { API_ROOT } from './../Config/ApiRoot';
-// import axios from '../axios'
+import { API_ROOT } from '../Config/ApiRoot';
+import axios from '../axios';
 
 class Login extends Component {
     constructor(props) {
