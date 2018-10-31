@@ -9,7 +9,7 @@ class HomePage extends Component {
         return (
             <div className="d-flex">
                 <Sidebar name={this.props.name} image={this.props.image} />
-                <Home name={this.props.name} image={this.props.image} />
+                <Home />
             </div>
         );
     }

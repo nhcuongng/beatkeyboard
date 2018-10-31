@@ -8,7 +8,11 @@ class TrainingPage extends Component {
         return (
             <div className="d-flex">
                 <Sidebar name={this.props.name} image={this.props.image} />
-                <Training name={this.props.name} image={this.props.image}/>
+                <Training
+                    name={this.props.name}
+                    image={this.props.image}
+                    data={this.props.data}
+                    id={this.props.id}/>
             </div>
         );
     }

@@ -104,11 +104,17 @@ body {
   text-decoration: none;
 }
 
-.characterBtn {
+.characterBtnSecondary,
+.characterBtnLight {
   cursor: auto!important;
 }
 
-.characterBtn:hover {
+.characterBtnSecondary:hover {
   background-color: #6c757d;
   border-color: #6c757d;
+}
+
+.characterBtnLight:hover {
+  background-color: #f8f9fa;
+  border-color: #f8f9fa;
 }

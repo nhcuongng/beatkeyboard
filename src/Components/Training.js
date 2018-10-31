@@ -1,6 +1,12 @@
-import React, { Component } from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { Input, FormGroup, Button, Progress, Card, Alert, CardText, Label, Table } from 'reactstrap';
+import React, { Component } from 'react'
+import 'bootstrap/dist/css/bootstrap.min.css'
+import { Input, FormGroup, Button, Progress, Card, Alert, CardText, Label } from 'reactstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faUndo } from '@fortawesome/free-solid-svg-icons'
+import TrainingRecord from './TrainingRecord'
+
+import axios from '../axios'
+import { API_ROOT } from '../config/ApiRoot'
 
 class Training extends Component {
     constructor() {
@@ -13,11 +19,16 @@ class Training extends Component {
             characters: 200,
             disable: false,
             buttonDisable: false,
-            isStart: false
+            isStart: false,
+            data: []
         }
     }
 
     static timer;
+
+    componentDidMount() {
+        this.setState({data: this.props.data})
+    }
 
     changeInput = (e) => {
         let chars = this.state.characters;
@@ -43,14 +54,33 @@ class Training extends Component {
             })
         }
         if (inputPercentage === 100) {
-            clearInterval(this.timer)
+            let dataCopy = this.state.data;
+            let now = new Date();
+            let nowMonth = now.getMonth() + 1;
+
+            if (nowMonth < 10) nowMonth = '0' + nowMonth;
+            let nowTime = `${now.getDate()}/${nowMonth}/${now.getFullYear()}`;
+
+            let currentData = {
+                date: nowTime,
+                characters: this.state.characters,
+                time: this.state.time,
+                id: this.props.id
+            }
+
+            dataCopy.unshift(currentData)
+
+            clearInterval(this.timer);
+
             let timeCopy = this.state.time;
             this.setState({
                 message: `Yessss! You did it! Just takes you only
                     ${timeCopy}s to complete ${this.state.characters} characters.
                     Great!!!`,
-                disable: true
+                disable: true,
+                data: dataCopy
             })
+            this.postData(currentData);
         }
     }
 
@@ -79,6 +109,20 @@ class Training extends Component {
         this.setState({[e.target.name]: e.target.value * 1})
     }
 
+    pasteInput = () => {
+        this.setState({ disable: true })
+    }
+
+    postData(data) {
+        if (this.props.name !== "") {
+            axios({
+                url: `${ API_ROOT }/post`,
+                method: 'POST',
+                data: data
+            }).catch(err => console.log(err))
+        }
+    }
+
     render() {
         return (
             <div className="mainDivision p-3">
@@ -86,7 +130,7 @@ class Training extends Component {
                     <h1 className="font-weight-bold mb-4">Training</h1>
                     <Alert color="success">
                         {this.state.input === '' ?
-                        'Try typing whatever you like as fast as possible in just a minute to reduce your stress <3':
+                        'Try typing whatever you like as fast as possible reduce your stress :3' :
                         this.state.message}
                     </Alert>
                     <Card body className="bg-success">
@@ -104,7 +148,6 @@ class Training extends Component {
                         <Input
                             type="textarea"
                             rows="1" name="input"
-                            id="exampleText"
                             placeholder="Type something here"
 
                             value={this.state.input}
@@ -115,7 +158,7 @@ class Training extends Component {
                     <div className="d-flex justify-content-between">
                         <div>
                             <div className="btn-group btn-group-toggle" data-toggle="buttons">
-                                <Button className="" color="success">
+                                <Button color="success">
                                     {(this.state.time -this.state.time % 60 )/ 60}:{this.state.time % 60 < 10 ? '0': ''}{this.state.time % 60}
                                 </Button>
                                 <Label className={this.state.characters === 200 ?
@@ -145,50 +188,17 @@ class Training extends Component {
                                     onClick={this.setChar}/>
                                     1000
                                 </Label>
-                                <Label className="btn btn-secondary characterBtn">
+                                <Label className="btn btn-secondary characterBtnSecondary">
                                     <Input type="radio" disabled/> characters
                                 </Label>
                             </div>
                         </div>
                         <Button color="dark" onClick={this.resetInput}>
-                            Reset
+                            <FontAwesomeIcon icon={faUndo} />
                         </Button>
                     </div>
                 </div>
-
-                <div className="bg-white p-3 rounded">
-                    <h4 className="font-weight-bold">Training Records</h4>
-                    <Table borderless responsive className="mb-0">
-                        <thead className="border-bottom">
-                        <tr>
-                            <th>#</th>
-                            <th>Date</th>
-                            <th>Characters</th>
-                            <th>Time</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>30/10/2018</td>
-                            <td>200</td>
-                            <td>10s</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>31/10/2018</td>
-                            <td>1000</td>
-                            <td>80s</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>01/11/2018</td>
-                            <td>500</td>
-                            <td>50s</td>
-                        </tr>
-                        </tbody>
-                    </Table>
-                </div>
+                <TrainingRecord data={this.state.data}/>
             </div>
         );
     }

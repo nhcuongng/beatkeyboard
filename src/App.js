@@ -13,8 +13,10 @@ class App extends Component {
   state = {
     name: '',
     image: '',
+    data: [],
+    id: ''
 }
-componentWillMount() {
+componentDidMount() {
     axios({
       // axios must with credential
       url: `${ API_ROOT }/profile`,
@@ -25,6 +27,8 @@ componentWillMount() {
         this.setState({
           name: response.data.user.name,
           image: response.data.user.image,
+          data: response.data.user.history,
+          id: response.data.user.id
         })
       }
     })
@@ -35,9 +39,27 @@ componentWillMount() {
     return (
       <BrowserRouter>
         <div className="App">
-          <Route exact path="/"  render={(props) => <HomePage {...props} name={this.state.name} image={this.state.image} isAuthed={true} />} />
-          <Route exact path="/training"  render={(props) => <TrainingPage {...props} name={this.state.name} image={this.state.image} isAuthed={true} />} />
-          <Route exact path="/multiplayer" render={(props) => <MultiplayerPage {...props} name={this.state.name} image={this.state.image} isAuthed={true} />} />
+          <Route exact path="/"  
+            render={(props) => <HomePage {...props} 
+            name={this.state.name} 
+            image={this.state.image}
+            data={this.state.data}
+            id={this.state.id}
+            isAuthed={true} />} />
+          <Route exact path="/training"
+            render={(props) => <TrainingPage {...props} 
+            name={this.state.name} 
+            image={this.state.image}
+            data={this.state.data}
+            id={this.state.id}
+            isAuthed={true} />} />
+          <Route exact path="/multiplayer"
+            render={(props) => <MultiplayerPage {...props}
+            name={this.state.name}
+            image={this.state.image}
+            data={this.state.data}
+            id={this.state.id}
+            isAuthed={true} />} />
         </div>
       </BrowserRouter>
     );

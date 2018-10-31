@@ -7,8 +7,13 @@ class MultiplayerPage extends Component {
     render() {
         return (
             <div className="d-flex">
-                <Sidebar/>
-                <Multiplayer/>
+                <Sidebar name={this.props.name} image={this.props.image} />
+                <Multiplayer
+                    name={this.props.name}
+                    image={this.props.image}
+                    data={this.props.data}
+                    id={this.props.id}
+                />
             </div>
         );
     }
