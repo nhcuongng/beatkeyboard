@@ -3,6 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Input, FormGroup, Button, Progress, Card, Alert, CardText, Label } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUndo } from '@fortawesome/free-solid-svg-icons'
+import Login from '../Components/Login'
 import { socket } from '../api';
 
 class Multiplayer extends Component {
@@ -23,6 +24,10 @@ class Multiplayer extends Component {
             this.setState(data)
         })
     }
+
+    // hanldChange = (event) => {
+    //     socket.emit('user1-send-to-server', { message: event.target.value })
+    //   }
 
     static timer;
 
@@ -51,6 +56,7 @@ class Multiplayer extends Component {
                 disable: true
             })
         }
+        console.log(e.target.value)
         socket.emit('user1-send-to-server', { message: e.target.value })
         
     }
@@ -92,7 +98,8 @@ class Multiplayer extends Component {
 
     render() {
         return (
-            <div className="mainDivision p-3">
+            <div>
+                { this.props.name ? <div className="mainDivision p-3">
                 <div className="typing_section p-3 rounded mb-3">
                     <h1 className="font-weight-bold mb-4">Multiplayer</h1>
                     <Alert color={ this.state.win === true ? "success" : "danger"}>
@@ -110,7 +117,7 @@ class Multiplayer extends Component {
                                 <Input type="radio" disabled/>1000 characters
                             </Label>
                         </div>
-                        <h4 className="mb-0 pt-2 font-weight-bold">User2</h4>
+                        <h4 className="mb-0 pt-2 font-weight-bold">Cuong</h4>
                     </div>
                     <Progress className="my-2" striped color="info" value={this.state.progress}>
                         {this.state.progress === 0 ? '' :
@@ -127,7 +134,7 @@ class Multiplayer extends Component {
                     </FormGroup>
                     <hr className="my-4"/>
                     <div className="d-flex justify-content-between">
-                        <h4 className="mb-0 pt-2 font-weight-bold">{ this.props.name }</h4>
+                        <h4 className="mb-0 pt-2 font-weight-bold">Duy Anh</h4>
                         <Button color="light" onClick={this.resetInput}>
                             <FontAwesomeIcon icon={faUndo} />
                         </Button>
@@ -148,13 +155,14 @@ class Multiplayer extends Component {
                             type="textarea"
                             rows="1" name="input"
                             placeholder="Type something here"
-
+                            
                             value={this.state.input}
                             onChange={this.changeInput}
                             onPaste={this.pasteInput}
                             disabled = {this.state.disable}/>
                     </FormGroup>
                 </div>
+            </div> : <div>Bạn chưa đăng nhập</div> }
             </div>
         );
     }
