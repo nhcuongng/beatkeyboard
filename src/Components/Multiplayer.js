@@ -5,7 +5,7 @@ import { Jumbotron, Input, FormGroup, Button, Progress, Card, Alert, CardText } 
 class Multiplayer extends Component {
     render() {
         return (
-            <div className="training">
+            <div className="mainDivision">
                 <Alert color="primary mx-5 mt-5 mb-2">
                     <h1>Multiplayer</h1>
                 </Alert>

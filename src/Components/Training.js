@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Input, FormGroup, Button, Progress, Card, Alert, CardText, Label } from 'reactstrap';
+import { Input, FormGroup, Button, Progress, Card, Alert, CardText, Label, Table } from 'reactstrap';
 
 class Training extends Component {
     constructor() {
@@ -33,7 +33,7 @@ class Training extends Component {
                 message: inputPercentage > 80 ? 
                     "You're almost done. Keep going!" :
                     inputPercentage > 60 ?
-                    "Wowww, your typing speed is unbeleivable." :
+                    "Wowww, your typing speed is unbelievable." :
                     inputPercentage > 40 ?
                     "Things are good. Keep going man." :
                     inputPercentage > 20 ?
@@ -46,7 +46,9 @@ class Training extends Component {
             clearInterval(this.timer)
             let timeCopy = this.state.time;
             this.setState({
-                message: "Yessss! You did it! Just takes you only " + timeCopy + "s. Great!!!",
+                message: `Yessss! You did it! Just takes you only
+                    ${timeCopy}s to complete ${this.state.characters} characters.
+                    Great!!!`,
                 disable: true
             })
         }
@@ -79,11 +81,11 @@ class Training extends Component {
 
     render() {
         return (
-            <div className="training p-3">
-                <div className="typing_section p-3 rounded">
-                    <h1 className="font-weight-bold mb-4">Training Session</h1>
+            <div className="mainDivision p-3">
+                <div className="typing_section p-3 rounded mb-3">
+                    <h1 className="font-weight-bold mb-4">Training</h1>
                     <Alert color="success">
-                        {this.state.message === '' ?
+                        {this.state.input === '' ?
                         'Try typing whatever you like as fast as possible in just a minute to reduce your stress <3':
                         this.state.message}
                     </Alert>
@@ -104,9 +106,10 @@ class Training extends Component {
                             rows="1" name="input"
                             id="exampleText"
                             placeholder="Type something here"
-                            
+
                             value={this.state.input}
                             onChange={this.changeInput}
+                            onPaste={this.pasteInput}
                             disabled = {this.state.disable}/>
                     </FormGroup>
                     <div className="d-flex justify-content-between">
@@ -116,41 +119,75 @@ class Training extends Component {
                                     {(this.state.time -this.state.time % 60 )/ 60}:{this.state.time % 60 < 10 ? '0': ''}{this.state.time % 60}
                                 </Button>
                                 <Label className={this.state.characters === 200 ?
-                                    "btn btn-info active" :
+                                    "btn btn-light active" :
                                     this.state.buttonDisable === true ?
-                                    "btn btn-info notDisplay" :
-                                    "btn btn-info"}>
+                                    "btn btn-light notDisplay" :
+                                    "btn btn-light"}>
                                     <Input type="radio" name="characters" value="200"
                                     onClick={this.setChar}/>
                                     200
                                 </Label>
                                 <Label className={this.state.characters === 500 ?
-                                    "btn btn-info active" :
+                                    "btn btn-light active" :
                                     this.state.buttonDisable === true ?
-                                    "btn btn-info notDisplay" :
-                                    "btn btn-info"}>
+                                    "btn btn-light notDisplay" :
+                                    "btn btn-light"}>
                                     <Input type="radio" name="characters" value="500"
                                     onClick={this.setChar}/>
                                     500
                                 </Label>
                                 <Label className={this.state.characters === 1000 ?
-                                    "btn btn-info active" :
+                                    "btn btn-light active" :
                                     this.state.buttonDisable === true ?
-                                    "btn btn-info notDisplay" :
-                                    "btn btn-info"}>
+                                    "btn btn-light notDisplay" :
+                                    "btn btn-light"}>
                                     <Input type="radio" name="characters" value="1000"
                                     onClick={this.setChar}/>
                                     1000
                                 </Label>
-                                <Label className="btn btn-info">
+                                <Label className="btn btn-secondary characterBtn">
                                     <Input type="radio" disabled/> characters
                                 </Label>
                             </div>
                         </div>
-                        <Button color="secondary" onClick={this.resetInput}>
+                        <Button color="dark" onClick={this.resetInput}>
                             Reset
                         </Button>
                     </div>
+                </div>
+
+                <div className="bg-white p-3 rounded">
+                    <h4 className="font-weight-bold">Training Records</h4>
+                    <Table borderless responsive className="mb-0">
+                        <thead className="border-bottom">
+                        <tr>
+                            <th>#</th>
+                            <th>Date</th>
+                            <th>Characters</th>
+                            <th>Time</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>30/10/2018</td>
+                            <td>200</td>
+                            <td>10s</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2</th>
+                            <td>31/10/2018</td>
+                            <td>1000</td>
+                            <td>80s</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td>01/11/2018</td>
+                            <td>500</td>
+                            <td>50s</td>
+                        </tr>
+                        </tbody>
+                    </Table>
                 </div>
             </div>
         );

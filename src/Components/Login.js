@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button, Modal, ModalHeader, ModalBody, Form, NavLink, NavItem } from 'reactstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faAngleDoubleRight } from '@fortawesome/free-solid-svg-icons'
+
 import { API_ROOT } from '../config/ApiRoot';
-import axios from '../axios';
+// import axios from '../axios';
 
 class Login extends Component {
     constructor(props) {
@@ -24,10 +27,16 @@ class Login extends Component {
         return (
           <div>
             <NavItem>
-                <NavLink onClick={this.toggle} className="text-primary">Log In</NavLink>
+                <NavLink href="#" onClick={this.toggle}>
+                    <FontAwesomeIcon icon={faAngleDoubleRight} className="size-16"/>
+                    Log In
+                </NavLink>
             </NavItem>
             <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
-                <ModalHeader toggle={this.toggle}>Sign in to <span className="text-primary">BeatKeyboard</span></ModalHeader>
+                <ModalHeader toggle={this.toggle}>
+                    Log in to&nbsp;
+                    <span className="text-success font-weight-bold">BeatKeyboard</span>
+                </ModalHeader>
                 <ModalBody>
                     <Form>
                         <Button className="btn btn-primary btn-block facebook-bg">
