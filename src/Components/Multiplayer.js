@@ -6,9 +6,11 @@ import { faUndo } from '@fortawesome/free-solid-svg-icons'
 import { socket } from '../api';
 
 class Multiplayer extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
+            socketId: "",
+            nameUser:"",
             input: '',
             progress: 0,
             message1: '',
@@ -21,7 +23,21 @@ class Multiplayer extends Component {
         }
         socket.on("server-send-to-user2", (data) => {
             this.setState(data)
+            
         })
+        socket.emit("getid", ({ id: "" }))
+        socket.on("get-id-success", (abc)=>{
+            this.setState({ socketId: socket.io.engine.id })
+            socket.emit("looking-for-opponent",({ socketId: this.state.socketId }))
+        })
+        socket.on("success", (data) => {
+            console.log(data)
+            this.setState({ nameUser: data.nameUser })
+        })
+        
+        // console.log(this.state.socketId)
+        
+
     }
 
     static timer;
@@ -110,7 +126,7 @@ class Multiplayer extends Component {
                                 <Input type="radio" disabled/>1000 characters
                             </Label>
                         </div>
-                        <h4 className="mb-0 pt-2 font-weight-bold">User2</h4>
+                    <h4 className="mb-0 pt-2 font-weight-bold">{ this.state.nameUser }</h4>                         
                     </div>
                     <Progress className="my-2" striped color="info" value={this.state.progress}>
                         {this.state.progress === 0 ? '' :
