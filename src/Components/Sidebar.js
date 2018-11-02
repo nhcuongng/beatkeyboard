@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { Nav, NavItem, NavLink, Card, CardText, CardBody } from 'reactstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faInfoCircle, faListOl, faUserFriends, faVial } from '@fortawesome/free-solid-svg-icons'
+import { faInfoCircle, faListOl, faUserFriends, faVial, faRobot } from '@fortawesome/free-solid-svg-icons'
 import { Link } from "react-router-dom"
 
 import Login from './Login'
@@ -41,17 +41,23 @@ class Sidebar extends Component {
                         </Link>
                     </NavItem>
                     <NavItem>
+                        <Link to="/computer" className="nav-link">
+                            <FontAwesomeIcon icon={faRobot} className="size-16"/>
+                            Computer
+                        </Link>
+                    </NavItem>
+                    <NavItem>
                         <Link to="/multiplayer" className="nav-link">
                             <FontAwesomeIcon icon={faUserFriends} className="size-16"/>
                             Multiplayer
                         </Link>
                     </NavItem>
-                    <NavItem>
+                    {/* <NavItem>
                         <Link to="/" className="nav-link">
                             <FontAwesomeIcon icon={faListOl} className="size-16"/>
                             Highscores
                         </Link>
-                    </NavItem>
+                    </NavItem> */}
                 </Nav>
                 <Nav vertical>
                     <NavItem>

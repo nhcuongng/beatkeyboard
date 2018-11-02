@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import { BrowserRouter, Route } from 'react-router-dom'
 import TrainingPage from './Components/TrainingPage'
-import MultiplayerPage from './Components/MultiplayerPage'
+import ComputerPage from './Components/ComputerPage'
 import HomePage from './Components/HomePage'
+import MultiplayerPage from './Components/MultiplayerPage'
 
 import { API_ROOT } from './config/ApiRoot'
 import axios from './axios'
@@ -14,6 +15,7 @@ class App extends Component {
     name: '',
     image: '',
     data: [],
+    computerData: [],
     id: ''
 }
 componentDidMount() {
@@ -28,7 +30,8 @@ componentDidMount() {
           name: response.data.user.name,
           image: response.data.user.image,
           data: response.data.user.history,
-          id: response.data.user.id
+          id: response.data.user.id,
+          computerData: response.data.user.challenge
         })
       }
     })
@@ -45,6 +48,7 @@ componentDidMount() {
             image={this.state.image}
             data={this.state.data}
             id={this.state.id}
+            computerData={this.state.computerData}
             isAuthed={true} />} />
           <Route exact path="/training"
             render={(props) => <TrainingPage {...props} 
@@ -52,6 +56,15 @@ componentDidMount() {
             image={this.state.image}
             data={this.state.data}
             id={this.state.id}
+            computerData={this.state.computerData}
+            isAuthed={true} />} />
+          <Route exact path="/computer"
+            render={(props) => <ComputerPage {...props}
+            name={this.state.name}
+            image={this.state.image}
+            data={this.state.data}
+            id={this.state.id}
+            computerData={this.state.computerData}
             isAuthed={true} />} />
           <Route exact path="/multiplayer"
             render={(props) => <MultiplayerPage {...props}
@@ -59,6 +72,7 @@ componentDidMount() {
             image={this.state.image}
             data={this.state.data}
             id={this.state.id}
+            computerData={this.state.computerData}
             isAuthed={true} />} />
         </div>
       </BrowserRouter>

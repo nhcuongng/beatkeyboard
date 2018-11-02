@@ -17,7 +17,8 @@
     "socket.io-client": "^2.1.1"
   },
   "scripts": {
-    "start": "cross-env ENVIRONMENT=local react-scripts start",
+    "HTTPS": "true",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

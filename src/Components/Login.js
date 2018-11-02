@@ -27,7 +27,7 @@ class Login extends Component {
         return (
           <div>
             <NavItem>
-                <NavLink href="#" onClick={this.toggle}>
+                <NavLink href="#" onClick={this.toggle}  className="bg-light">
                     <FontAwesomeIcon icon={faAngleDoubleRight} className="size-16"/>
                     Log In
                 </NavLink>

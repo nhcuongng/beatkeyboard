@@ -136,7 +136,7 @@ class Multiplayer extends Component {
                         <Input
                             type="textarea"
                             rows="1" name="input"
-                            placeholder="From Oponent....."
+                            placeholder="From Opponent....."
                             value={this.state.message}
                             disabled
                             />

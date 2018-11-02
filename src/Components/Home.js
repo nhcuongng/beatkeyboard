@@ -15,7 +15,7 @@ class Home extends Component {
                         Let your stress down and quickly get relaxed by beating your keyboard crazily.
                     </h4>
                     <Link to="/training">
-                        <Button color="success" className="text-uppercase font-weight-bold mt-4">
+                        <Button color="success" size="lg" className="text-uppercase font-weight-bold mt-4">
                             Try it now
                         </Button>
                     </Link>
@@ -47,7 +47,7 @@ class Home extends Component {
                         </h4>
                         <p className="mb-0">
                            Get tired of playing BeatKeyboard yourself?! This section is for you.
-                           Battle with your opponents to get memorable moments.
+                           Battle with computer or other opponents to get memorable moments.
                         </p>
                     </div>
                 </div>

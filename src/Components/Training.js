@@ -126,6 +126,10 @@ class Training extends Component {
     render() {
         return (
             <div className="mainDivision p-3">
+                {this.props.name === "" ? 
+                <Alert color="danger" className="mb-1">
+                    Log in to save your scores and records to the cloud.
+                </Alert> : ""}
                 <div className="typing_section p-3 rounded mb-3">
                     <h1 className="font-weight-bold mb-4">Training</h1>
                     <Alert color="success">
@@ -198,7 +202,7 @@ class Training extends Component {
                         </Button>
                     </div>
                 </div>
-                <TrainingRecord data={this.state.data}/>
+                <TrainingRecord data={this.state.data} max={3}/>
             </div>
         );
     }
