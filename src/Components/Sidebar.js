@@ -46,18 +46,18 @@ class Sidebar extends Component {
                             Computer
                         </Link>
                     </NavItem>
-                    {/* <NavItem>
+                    <NavItem>
                         <Link to="/multiplayer" className="nav-link">
                             <FontAwesomeIcon icon={faUserFriends} className="size-16"/>
                             Multiplayer
                         </Link>
-                    </NavItem> */}
-                    {/* <NavItem>
+                    </NavItem>
+                    <NavItem>
                         <Link to="/" className="nav-link">
                             <FontAwesomeIcon icon={faListOl} className="size-16"/>
                             Highscores
                         </Link>
-                    </NavItem> */}
+                    </NavItem>
                 </Nav>
                 <Nav vertical>
                     <NavItem>

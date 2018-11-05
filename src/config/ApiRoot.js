@@ -1,1 +1,1 @@
-export const API_ROOT = process.env.ENVIRONMENT ?  "http://localhost:8080" : "https://beatkeyboard-server.herokuapp.com";
+export const API_ROOT = process.env.ENVIRONMENT ?  "https://beatkeyboard-server.herokuapp.com":"http://localhost:8080";
